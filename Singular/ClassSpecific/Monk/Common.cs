@@ -35,14 +35,10 @@ namespace Singular.ClassSpecific.Monk
             return new PrioritySelector(
 
                     PartyBuff.BuffGroup(
-                        "Legacy of the Emperor",
-                        ret => true,
-                        "Legacy of the White Tiger"),
+                        "Legacy of the Emperor"),
 
                     PartyBuff.BuffGroup(
-                        "Legacy of the White Tiger",
-                        ret => true,
-                        "Legacy of the Emperor")
+                        "Legacy of the White Tiger")
                 );
         }
 

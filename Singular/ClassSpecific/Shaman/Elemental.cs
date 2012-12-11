@@ -301,6 +301,10 @@ namespace Singular.ClassSpecific.Shaman
                         Spell.BuffSelf("Lightning Shield"),
                         Spell.Cast("Fire Elemental Totem", ret => Me.CurrentTarget.IsBoss || Me.CurrentTarget.IsPlayer),
                         Spell.BuffSelf("Ascendance", ret => Me.CurrentTarget.IsBoss || Me.CurrentTarget.IsPlayer && StyxWoW.Me.CurrentTarget.GetAuraTimeLeft("Flame Shock", true).TotalSeconds >= 16.5 && SpellManager.Spells["Lava Burst"].Cooldown),
+                        Spell.BuffSelf("Searing Totem",
+                        ret => Me.GotTarget 
+                            && Me.CurrentTarget.Distance < Totems.GetTotemRange(WoWTotem.Searing) - 2f 
+                            && !Totems.Exist( WoWTotemType.Fire)),
                         Spell.Cast("Flame Shock", ret => !StyxWoW.Me.HasAura("Ascendance") && (StyxWoW.Me.CurrentTarget.GetAuraTimeLeft("Flame Shock", true).TotalSeconds <= 3 || !StyxWoW.Me.CurrentTarget.HasMyAura("Flame Shock"))),
                         Spell.Cast("Lava Burst", ret => StyxWoW.Me.CurrentTarget.GetAuraTimeLeft("Flame Shock", true).TotalSeconds > 1.5),
                         Spell.Cast("Elemental Blast", ret => !StyxWoW.Me.HasAura("Ascendance")),
