@@ -61,26 +61,29 @@ namespace Singular.ClassSpecific.Paladin
 
                 //Multi target
                 new Decorator(
-                    ret => Unit.UnfriendlyUnitsNearTarget(8f).Count() >= 4,
+                    ret => Unit.UnfriendlyUnitsNearTarget(8f).Count() >= 3,
                     new PrioritySelector(
                         Spell.Cast("Shield of the Righteous", ret => StyxWoW.Me.CurrentHolyPower >= 3 || StyxWoW.Me.ActiveAuras.ContainsKey("Divine Purpose")),
                         Spell.Cast("Judgment", ret => SpellManager.HasSpell("Sanctified Wrath") && StyxWoW.Me.HasAura("Avenging Wrath")),
                         Spell.Cast("Hammer of the Righteous"),
                         Spell.Cast("Judgment"),
                         Spell.Cast("Avenger's Shield", ret => StyxWoW.Me.ActiveAuras.ContainsKey("Grand Crusader")),
+                        Spell.Cast("Hammer of Wrath"),
                         Spell.Cast("Consecration", ret => !StyxWoW.Me.IsMoving ),
                         Spell.Cast("Avenger's Shield"),
                         Spell.Cast("Holy Wrath"),
                         Movement.CreateMoveToMeleeBehavior(true)
                         )),
                 //Single target
-                        Spell.Cast("Shield of the Righteous", ret => StyxWoW.Me.CurrentHolyPower >= 3 || StyxWoW.Me.ActiveAuras.ContainsKey("Divine Purpose")),
+                Spell.Cast("Shield of the Righteous", ret => StyxWoW.Me.CurrentHolyPower >= 3 || StyxWoW.Me.ActiveAuras.ContainsKey("Divine Purpose")),
                 Spell.Cast("Hammer of the Righteous", ret => !StyxWoW.Me.CurrentTarget.ActiveAuras.ContainsKey("Weakened Blows")),
                 Spell.Cast("Judgment", ret => SpellManager.HasSpell("Sanctified Wrath") && StyxWoW.Me.HasAura("Avenging Wrath")),
                 Spell.Cast("Crusader Strike"),
                 Spell.Cast("Judgment"),
                 Spell.Cast("Avenger's Shield", ret => StyxWoW.Me.ActiveAuras.ContainsKey("Grand Crusader")),
+                Spell.Cast("Hammer of Wrath"),
                 Spell.Cast("Consecration", ret => !StyxWoW.Me.IsMoving),
+                Spell.Cast("Avenger's Shield"),
                 Spell.Cast("Holy Wrath"),
                 Spell.BuffSelf("Sacred Shield", ret => SpellManager.HasSpell("Sacred Shield")),
                 Movement.CreateMoveToMeleeBehavior(true));
