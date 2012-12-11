@@ -307,7 +307,7 @@ namespace Singular.ClassSpecific.Shaman
                             && !Totems.Exist( WoWTotemType.Fire)),
                         Spell.Cast("Flame Shock", ret => !StyxWoW.Me.HasAura("Ascendance") && (StyxWoW.Me.CurrentTarget.GetAuraTimeLeft("Flame Shock", true).TotalSeconds <= 3 || !StyxWoW.Me.CurrentTarget.HasMyAura("Flame Shock"))),
                         Spell.Cast("Lava Burst", ret => StyxWoW.Me.CurrentTarget.GetAuraTimeLeft("Flame Shock", true).TotalSeconds > 1.5),
-                        Spell.Cast("Elemental Blast", ret => !StyxWoW.Me.HasAura("Ascendance")),
+                        Spell.Cast("Elemental Blast"),
                         Spell.Cast("Earth Shock", ret => StyxWoW.Me.HasAura("Lightning Shield", 7) || StyxWoW.Me.HasAura("Lightning Shield", 3) && StyxWoW.Me.CurrentTarget.GetAuraTimeLeft("Flame Shock", true).TotalSeconds > 6.5),
                         Spell.Cast("Earth Elemental Totem", ret => SpellManager.Spells["Fire Elemental Totem"].CooldownTimeLeft.Seconds >= 50),
                         Totems.CreateTotemsNormalBehavior(),
