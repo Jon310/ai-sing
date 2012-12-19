@@ -131,10 +131,10 @@ namespace Singular.ClassSpecific.Shaman
                                 && Unit.NearbyUnfriendlyUnits.Any(u => u.Distance < 40 && u.IsTargetingMeOrPet && u.IsCasting)
                                 && !Exist(WoWTotemType.Air)),
 
-                        Spell.Cast("Capacitor Totem",
+                        /*Spell.Cast("Capacitor Totem",
                             ret => ((bool) ret)
                                 && Unit.NearbyUnfriendlyUnits.Any(u => u.Distance < GetTotemRange(WoWTotem.Capacitor))
-                                && !Exist(WoWTotemType.Air)),
+                                && !Exist(WoWTotemType.Air)),*/
 
                         Spell.Cast("Stormlash Totem",
                             ret => ((bool)ret)

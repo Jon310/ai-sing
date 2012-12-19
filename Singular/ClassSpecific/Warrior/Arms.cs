@@ -82,8 +82,9 @@ namespace Singular.ClassSpecific.Warrior
                         && Me.CurrentTarget.IsWithinMeleeRange,
 
                     new PrioritySelector(
+                        //not needed
                         Spell.BuffSelf("Battle Stance"),
-
+                        //add toggle if above execte range
                         Spell.Cast("Recklessness", ret => (Me.CurrentTarget.IsBoss || SingularRoutine.CurrentWoWContext != WoWContext.Instances) && Me.CurrentTarget.IsWithinMeleeRange ),
                         Spell.Cast("Skull Banner", ret => Me.CurrentTarget.IsBoss || Me.CurrentTarget.IsPlayer),
 
@@ -145,6 +146,7 @@ namespace Singular.ClassSpecific.Warrior
 
                         Spell.Buff("Piercing Howl", ret => Me.CurrentTarget.Distance < 10 && Me.CurrentTarget.IsPlayer && !Me.CurrentTarget.HasAnyAura("Piercing Howl", "Hamstring") && SingularSettings.Instance.Warrior.UseWarriorSlows),
                         Spell.Buff("Hamstring", ret => Me.CurrentTarget.IsPlayer && !Me.CurrentTarget.HasAnyAura("Piercing Howl", "Hamstring") && SingularSettings.Instance.Warrior.UseWarriorSlows),
+                        // add safeguard(replaces intervene) if rooted, or your own mocking banner, placed at target(does not share a cooldown)
                         Spell.Cast("Intervene", ret => Common.BestInterveneTarget),
                         Spell.Cast("Disarm", ret => StyxWoW.Me.CurrentTarget.HasAnyAura(Common._disarm)),
                         CreateArmsAoeCombat(ret => Unit.NearbyUnfriendlyUnits.Count(u => u.Distance < (u.MeleeDistance() + 1))),
